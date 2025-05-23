@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品详情 - 购物小程序原型</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* 商品详情页特有样式 */
+        .product-detail-container {
+            padding-bottom: 70px;
+        }
+        
+        .product-gallery {
+            height: 300px;
+            background-color: #f5f5f5;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            color: #999;
+        }
+        
+        .gallery-dots {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+        }
+        
+        .gallery-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.6);
+            margin: 0 3px;
+        }
+        
+        .gallery-dot.active {
+            background-color: #fff;
+            width: 18px;
+            border-radius: 3px;
+        }
+        
+        .product-info {
+            padding: 15px;
+            background-color: #fff;
+        }
+        
+        .product-price-box {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 10px;
+        }
+        
+        .current-price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff4d4f;
+        }
+        
+        .original-price {
+            font-size: 14px;
+            color: #999;
+            text-decoration: line-through;
+            margin-left: 10px;
+        }
+        
+        .product-title {
+            font-size: 16px;
+            font-weight: bold;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+        
+        .product-tags {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        
+        .product-tag {
+            font-size: 12px;
+            color: #ff4d4f;
+            background-color: #fff0f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 5px;
+        }
+        
+        .product-sales {
+            font-size: 12px;
+            color: #999;
+        }
+        
+        .product-options {
+            margin-top: 10px;
+            background-color: #fff;
+            padding: 15px;
+        }
+        
+        .option-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #f5f5f5;
+        }
+        
+        .option-item:last-child {
+            border-bottom: none;
+        }
+        
+        .option-label {
+            color: #666;
+        }
+        
+        .option-value {
+            color: #999;
+            display: flex;
+            align-items: center;
+        }
+        
+        .option-value::after {
+            content: '>';
+            margin-left: 5px;
+            font-size: 12px;
+        }
+        
+        .product-detail {
+            margin-top: 10px;
+            background-color: #fff;
+        }
+        
+        .detail-tabs {
+            display: flex;
+            border-bottom: 1px solid #f5f5f5;
+        }
+        
+        .detail-tab {
+            flex: 1;
+            text-align: center;
+            padding: 12px 0;
+            font-size: 14px;
+            color: #666;
+            position: relative;
+        }
+        
+        .detail-tab.active {
+            color: #ff4d4f;
+            font-weight: bold;
+        }
+        
+        .detail-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 2px;
+            background-color: #ff4d4f;
+        }
+        
+        .detail-content {
+            padding: 15px;
+        }
+        
+        .detail-image {
+            height: 200px;
+            background-color: #f8f8f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+            color: #999;
+        }
+        
+        .bottom-bar {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 414px;
+            height: 60px;
+            background-color: #fff;
+            display: flex;
+            border-top: 1px solid #eee;
+            z-index: 100;
+        }
+        
+        .bottom-icons {
+            display: flex;
+            width: 30%;
+        }
+        
+        .bottom-icon {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .bottom-icon-img {
+            font-size: 20px;
+            margin-bottom: 3px;
+        }
+        
+        .bottom-buttons {
+            display: flex;
+            width: 70%;
+        }
+        
+        .add-cart-btn, .buy-now-btn {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .add-cart-btn {
+            background-color: #fff8cc;
+            color: #ff9500;
+        }
+        
+        .buy-now-btn {
+            background-color: #ff4d4f;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- 商品详情内容 -->
+        <div class="product-detail-container">
+            <!-- 商品图片轮播 -->
+            <div class="product-gallery">
+                商品主图展示
+                <div class="gallery-dots">
+                    <div class="gallery-dot active"></div>
+                    <div class="gallery-dot"></div>
+                    <div class="gallery-dot"></div>
+                    <div class="gallery-dot"></div>
+                </div>
+            </div>
+            
+            <!-- 商品基本信息 -->
+            <div class="product-info">
+                <div class="product-price-box">
+                    <div class="current-price">¥199</div>
+                    <div class="original-price">¥399</div>
+                </div>
+                <div class="product-title">2023新款无线蓝牙耳机 主动降噪 长续航 舒适佩戴 高音质</div>
+                <div class="product-tags">
+                    <div class="product-tag">限时优惠</div>
+                    <div class="product-tag">包邮</div>
+                    <div class="product-tag">7天无理由退换</div>
+                </div>
+                <div class="product-sales">月销 2345件 | 好评率 98%</div>
+            </div>
+            
+            <!-- 商品选项 -->
+            <div class="product-options">
+                <div class="option-item">
+                    <div class="option-label">选择</div>
+                    <div class="option-value">颜色、规格</div>
+                </div>
+                <div class="option-item">
+                    <div class="option-label">送至</div>
+                    <div class="option-value">北京市 海淀区</div>
+                </div>
+                <div class="option-item">
+                    <div class="option-label">服务</div>
+                    <div class="option-value">7天无理由退换 · 48小时发货</div>
+                </div>
+            </div>
+            
+            <!-- 商品详情 -->
+            <div class="product-detail">
+                <div class="detail-tabs">
+                    <div class="detail-tab active">商品详情</div>
+                    <div class="detail-tab">规格参数</div>
+                    <div class="detail-tab">用户评价(124)</div>
+                </div>
+                <div class="detail-content">
+                    <div class="detail-image">商品详情图1</div>
+                    <div class="detail-image">商品详情图2</div>
+                    <div class="detail-image">商品详情图3</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 底部购买栏 -->
+        <div class="bottom-bar">
+            <div class="bottom-icons">
+                <div class="bottom-icon">
+                    <div class="bottom-icon-img">🏠</div>
+                    <div>首页</div>
+                </div>
+                <div class="bottom-icon">
+                    <div class="bottom-icon-img">💬</div>
+                    <div>客服</div>
+                </div>
+                <div class="bottom-icon">
+                    <div class="bottom-icon-img">❤️</div>
+                    <div>收藏</div>
+                </div>
+            </div>
+            <div class="bottom-buttons">
+                <div class="add-cart-btn">加入购物车</div>
+                <div class="buy-now-btn">立即购买</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

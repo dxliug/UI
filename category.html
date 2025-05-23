@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品分类 - 购物小程序原型</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* 分类页特有样式 */
+        .category-container {
+            display: flex;
+            height: calc(100vh - 60px);
+        }
+        
+        .category-sidebar {
+            width: 80px;
+            background-color: #f8f8f8;
+            height: 100%;
+            overflow-y: auto;
+        }
+        
+        .sidebar-item {
+            padding: 15px 0;
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+            position: relative;
+        }
+        
+        .sidebar-item.active {
+            color: #ff4d4f;
+            background-color: #fff;
+        }
+        
+        .sidebar-item.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 20px;
+            background-color: #ff4d4f;
+        }
+        
+        .category-content {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+        }
+        
+        .category-banner {
+            height: 100px;
+            background-color: #ffebee;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+            color: #ff4d4f;
+            font-weight: bold;
+        }
+        
+        .subcategory-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin: 15px 0 10px;
+        }
+        
+        .subcategory-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        
+        .subcategory-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .subcategory-image {
+            width: 60px;
+            height: 60px;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        
+        .subcategory-name {
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- 顶部搜索栏 -->
+        <div class="search-bar">
+            <div class="search-input">
+                <span class="search-icon">🔍</span>
+                <span class="placeholder">搜索商品</span>
+            </div>
+        </div>
+
+        <!-- 分类内容 -->
+        <div class="category-container">
+            <!-- 左侧分类导航 -->
+            <div class="category-sidebar">
+                <div class="sidebar-item active">服饰</div>
+                <div class="sidebar-item">数码</div>
+                <div class="sidebar-item">生鲜</div>
+                <div class="sidebar-item">家居</div>
+                <div class="sidebar-item">美妆</div>
+                <div class="sidebar-item">母婴</div>
+                <div class="sidebar-item">图书</div>
+                <div class="sidebar-item">运动</div>
+                <div class="sidebar-item">家电</div>
+                <div class="sidebar-item">鞋包</div>
+            </div>
+            
+            <!-- 右侧子分类 -->
+            <div class="category-content">
+                <div class="category-banner">服饰专区</div>
+                
+                <div class="subcategory-title">女装</div>
+                <div class="subcategory-grid">
+                    <div class="subcategory-item">
+                        <div class="subcategory-image">👗</div>
+                        <div class="subcategory-name">连衣裙</div>
+                    </div>
+                    <div class="subcategory-item">
+                        <div class="subcategory-image">👚</div>
+                        <div class="subcategory-name">T恤</div>
+                    </div>
+                    <div class="subcategory-item">
+                        <div class="subcategory-image">👖</div>
+                        <div class="subcategory-name">牛仔裤</div>
+                    </div>
+                    <div class="subcategory-item">
+                        <div class="subcategory-image">🧥</div>
+                        <div class="subcategory-name">外套</div>
+                    </div>
+                    <div class="subcategory-item">
+                        <div class="subcategory-image">👘</div>
+                        <div class="subcategory-name">衬衫</div>
+                    </div>
+                    <div class="subcategory-item">
+                        <div class="subcategory-image">🩳</div>
+                        <div class="subcategory-name">短裤</div>
+                    </div>
+                </div>
+                
+                <div class="subcategory-title">男装</div>
+                <div class="subcategory-grid">
+                    <div class="subcategory-item">
+                        <div class="subcategory-image">👕</div>
+                        <div class="subcategory-name">T恤</div>
+                    </div>
+                    <div class="subcategory-item">
+                        <div class="subcategory-image">👔</div>
+                        <div class="subcategory-name">衬衫</div>
+                    </div>
+                    <div class="subcategory-item">
+                        <div class="subcategory-image">👖</div>
+                        <div class="subcategory-name">牛仔裤</div>
+                    </div>
+                    <div class="subcategory-item">
+                        <div class="subcategory-image">🧥</div>
+                        <div class="subcategory-name">外套</div>
+                    </div>
+                    <div class="subcategory-item">
+                        <div class="subcategory-image">👞</div>
+                        <div class="subcategory-name">休闲鞋</div>
+                    </div>
+                    <div class="subcategory-item">
+                        <div class="subcategory-image">🩳</div>
+                        <div class="subcategory-name">短裤</div>
+                    </div>
+                </div>
+                
+                <div class="subcategory-title">内衣</div>
+                <div class="subcategory-grid">
+                    <div class="subcategory-item">
+                        <div class="subcategory-image">👙</div>
+                        <div class="subcategory-name">文胸</div>
+                    </div>
+                    <div class="subcategory-item">
+                        <div class="subcategory-image">🩲</div>
+                        <div class="subcategory-name">内裤</div>
+                    </div>
+                    <div class="subcategory-item">
+                        <div class="subcategory-image">🧦</div>
+                        <div class="subcategory-name">袜子</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部导航 -->
+        <div class="tab-bar">
+            <div class="tab-item">
+                <div class="tab-icon">🏠</div>
+                <div class="tab-name">首页</div>
+            </div>
+            <div class="tab-item active">
+                <div class="tab-icon">🔍</div>
+                <div class="tab-name">分类</div>
+            </div>
+            <div class="tab-item">
+                <div class="tab-icon">🛒</div>
+                <div class="tab-name">购物车</div>
+            </div>
+            <div class="tab-item">
+                <div class="tab-icon">👤</div>
+                <div class="tab-name">我的</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

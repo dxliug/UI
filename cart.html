@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>购物车 - 购物小程序原型</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* 购物车页面特有样式 */
+        .cart-container {
+            padding-bottom: 120px;
+        }
+        
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background-color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        .cart-title {
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .cart-edit {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .cart-empty {
+            display: none; /* 默认隐藏，有商品时显示 */
+            padding: 50px 0;
+            text-align: center;
+            color: #999;
+        }
+        
+        .cart-empty-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+            color: #ddd;
+        }
+        
+        .cart-items {
+            background-color: #fff;
+        }
+        
+        .cart-item {
+            display: flex;
+            padding: 15px;
+            border-bottom: 1px solid #f5f5f5;
+        }
+        
+        .cart-checkbox {
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .checkbox-inner {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 1px solid #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            background-color: #ff4d4f;
+        }
+        
+        .cart-product-image {
+            width: 80px;
+            height: 80px;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+            margin-right: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #999;
+        }
+        
+        .cart-product-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .cart-product-name {
+            font-size: 14px;
+            line-height: 1.4;
+            margin-bottom: 5px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .cart-product-sku {
+            font-size: 12px;
+            color: #999;
+            padding: 2px 5px;
+            background-color: #f8f8f8;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+        
+        .cart-product-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .cart-product-price {
+            color: #ff4d4f;
+            font-weight: bold;
+        }
+        
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .quantity-button {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f8f8f8;
+            color: #666;
+            font-size: 16px;
+            user-select: none;
+        }
+        
+        .quantity-input {
+            width: 40px;
+            height: 28px;
+            text-align: center;
+            border: none;
+            border-left: 1px solid #eee;
+            border-right: 1px solid #eee;
+        }
+        
+        .cart-recommend {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #fff;
+        }
+        
+        .recommend-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .recommend-products {
+            display: flex;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+        
+        .recommend-product {
+            min-width: 100px;
+            margin-right: 10px;
+        }
+        
+        .recommend-image {
+            width: 100px;
+            height: 100px;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #999;
+        }
+        
+        .recommend-price {
+            color: #ff4d4f;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .cart-bottom {
+            position: fixed;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 414px;
+            height: 50px;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            border-top: 1px solid #eee;
+            z-index: 100;
+        }
+        
+        .select-all {
+            display: flex;
+            align-items: center;
+        }
+        
+        .select-all-text {
+            margin-left: 5px;
+            font-size: 14px;
+        }
+        
+        .cart-total {
+            flex: 1;
+            text-align: right;
+            padding-right: 15px;
+        }
+        
+        .total-price {
+            color: #ff4d4f;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .checkout-button {
+            width: 120px;
+            height: 40px;
+            background-color: #ff4d4f;
+            color: #fff;
+            font-size: 14px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="cart-container">
+            <!-- 购物车头部 -->
+            <div class="cart-header">
+                <div class="cart-title">购物车</div>
+                <div class="cart-edit">编辑</div>
+            </div>
+            
+            <!-- 空购物车提示（默认隐藏） -->
+            <div class="cart-empty">
+                <div class="cart-empty-icon">🛒</div>
+                <div>购物车还是空的，去挑选喜欢的商品吧~</div>
+            </div>
+            
+            <!-- 购物车商品列表 -->
+            <div class="cart-items">
+                <!-- 购物车商品项 -->
+                <div class="cart-item">
+                    <div class="cart-checkbox">
+                        <div class="checkbox-inner">✓</div>
+                    </div>
+                    <div class="cart-product-image">商品图</div>
+                    <div class="cart-product-info">
+                        <div class="cart-product-name">无线蓝牙耳机 主动降噪 长续航 舒适佩戴</div>
+                        <div class="cart-product-sku">黑色 标准版</div>
+                        <div class="cart-product-bottom">
+                            <div class="cart-product-price">¥199</div>
+                            <div class="quantity-control">
+                                <div class="quantity-button">-</div>
+                                <input type="text" class="quantity-input" value="1" readonly>
+                                <div class="quantity-button">+</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cart-item">
+                    <div class="cart-checkbox">
+                        <div class="checkbox-inner">✓</div>
+                    </div>
+                    <div class="cart-product-image">商品图</div>
+                    <div class="cart-product-info">
+                        <div class="cart-product-name">时尚连衣裙2023新款夏季女装气质显瘦中长款裙子</div>
+                        <div class="cart-product-sku">白色 M码</div>
+                        <div class="cart-product-bottom">
+                            <div class="cart-product-price">¥129</div>
+                            <div class="quantity-control">
+                                <div class="quantity-button">-</div>
+                                <input type="text" class="quantity-input" value="1" readonly>
+                                <div class="quantity-button">+</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 猜你喜欢 -->
+            <div class="cart-recommend">
+                <div class="recommend-title">猜你喜欢</div>
+                <div class="recommend-products">
+                    <div class="recommend-product">
+                        <div class="recommend-image">商品图</div>
+                        <div class="recommend-price">¥89</div>
+                    </div>
+                    <div class="recommend-product">
+                        <div class="recommend-image">商品图</div>
+                        <div class="recommend-price">¥199</div>
+                    </div>
+                    <div class="recommend-product">
+                        <div class="recommend-image">商品图</div>
+                        <div class="recommend-price">¥59</div>
+                    </div>
+                    <div class="recommend-product">
+                        <div class="recommend-image">商品图</div>
+                        <div class="recommend-price">¥129</div>
+                    </div>
+                    <div class="recommend-product">
+                        <div class="recommend-image">商品图</div>
+                        <div class="recommend-price">¥79</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 底部结算栏 -->
+            <div class="cart-bottom">
+                <div class="select-all">
+                    <div class="checkbox-inner">✓</div>
+                    <div class="select-all-text">全选</div>
+                </div>
+                <div class="cart-total">
+                    合计: <span class="total-price">¥328</span>
+                </div>
+                <div class="checkout-button">结算(2)</div>
+            </div>
+        </div>
+        
+        <!-- 底部导航 -->
+        <div class="tab-bar">
+            <div class="tab-item">
+                <div class="tab-icon">🏠</div>
+                <div class="tab-name">首页</div>
+            </div>
+            <div class="tab-item">
+                <div class="tab-icon">🔍</div>
+                <div class="tab-name">分类</div>
+            </div>
+            <div class="tab-item active">
+                <div class="tab-icon">🛒</div>
+                <div class="tab-name">购物车</div>
+            </div>
+            <div class="tab-item">
+                <div class="tab-icon">👤</div>
+                <div class="tab-name">我的</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

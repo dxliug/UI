@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>购物小程序原型</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 顶部搜索栏 -->
+        <div class="search-bar">
+            <div class="search-input">
+                <span class="search-icon">🔍</span>
+                <span class="placeholder">搜索商品</span>
+            </div>
+            <div class="message-icon">✉️</div>
+        </div>
+
+        <!-- 轮播图 -->
+        <div class="banner">
+            <div class="banner-image">精选商品轮播图</div>
+            <div class="dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+
+        <!-- 分类导航 -->
+        <div class="category-nav">
+            <div class="category-item">
+                <div class="category-icon">👚</div>
+                <div class="category-name">服饰</div>
+            </div>
+            <div class="category-item">
+                <div class="category-icon">📱</div>
+                <div class="category-name">数码</div>
+            </div>
+            <div class="category-item">
+                <div class="category-icon">🍎</div>
+                <div class="category-name">生鲜</div>
+            </div>
+            <div class="category-item">
+                <div class="category-icon">🏠</div>
+                <div class="category-name">家居</div>
+            </div>
+            <div class="category-item">
+                <div class="category-icon">🎁</div>
+                <div class="category-name">更多</div>
+            </div>
+        </div>
+
+        <!-- 限时抢购 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-title">限时抢购</div>
+                <div class="section-more">更多 ></div>
+            </div>
+            <div class="flash-sale">
+                <div class="timer">01:45:30</div>
+                <div class="product-scroll">
+                    <div class="product-card small">
+                        <div class="product-image">商品图片</div>
+                        <div class="product-price">¥99</div>
+                        <div class="product-original">¥199</div>
+                    </div>
+                    <div class="product-card small">
+                        <div class="product-image">商品图片</div>
+                        <div class="product-price">¥59</div>
+                        <div class="product-original">¥129</div>
+                    </div>
+                    <div class="product-card small">
+                        <div class="product-image">商品图片</div>
+                        <div class="product-price">¥79</div>
+                        <div class="product-original">¥159</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 推荐商品 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-title">猜你喜欢</div>
+            </div>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">商品图片</div>
+                    <div class="product-name">时尚连衣裙2023新款夏季</div>
+                    <div class="product-price">¥129</div>
+                    <div class="product-sales">已售2345件</div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">商品图片</div>
+                    <div class="product-name">无线蓝牙耳机降噪长续航</div>
+                    <div class="product-price">¥199</div>
+                    <div class="product-sales">已售1892件</div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">商品图片</div>
+                    <div class="product-name">家用智能扫地机器人</div>
+                    <div class="product-price">¥899</div>
+                    <div class="product-sales">已售568件</div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">商品图片</div>
+                    <div class="product-name">纯棉短袖T恤男夏季新款</div>
+                    <div class="product-price">¥69</div>
+                    <div class="product-sales">已售3421件</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部导航 -->
+        <div class="tab-bar">
+            <div class="tab-item active">
+                <div class="tab-icon">🏠</div>
+                <div class="tab-name">首页</div>
+            </div>
+            <div class="tab-item">
+                <div class="tab-icon">🔍</div>
+                <div class="tab-name">分类</div>
+            </div>
+            <div class="tab-item">
+                <div class="tab-icon">🛒</div>
+                <div class="tab-name">购物车</div>
+            </div>
+            <div class="tab-item">
+                <div class="tab-icon">👤</div>
+                <div class="tab-name">我的</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
